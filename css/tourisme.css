@@ -1,0 +1,39 @@
+/* Styles spécifiques à la page Tourisme */
+
+/* Animation d'apparition très douce et lente (effet relaxant) */
+.animate-slow-fade {
+    animation: slowFade 2s ease-in-out forwards;
+    opacity: 0;
+}
+
+@keyframes slowFade {
+    from {
+        opacity: 0;
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+/* Flottement doux et ample (effet vent/vagues) */
+.animate-gentle-float {
+    animation: gentleFloat 6s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(1deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Effet d'expansion de l'image au survol (effet carte postale) */
+.hover-expand {
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-expand:hover {
+    transform: scale(1.03);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}

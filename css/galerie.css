@@ -1,0 +1,70 @@
+ <style>
+        /* Styles de base */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        header {
+
+            text-align: center;
+            padding-bottom: 40px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        /* Container de la galerie */
+        .gallery-container {
+            display: grid;
+            /* Crée des colonnes automatiques de minimum 250px */
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Style de chaque item de la galerie */
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Image proprement dite */
+        .gallery-item img {
+            width: 100%;
+            height: 200px; /* Hauteur fixe pour l'alignement */
+            object-fit: cover; /* Recadre l'image 
+
+sans la déformer */
+            display: block;
+            cursor: pointer;
+        }
+
+        /* Légende optionnelle */
+        .caption {
+            padding: 15px;
+            text-align: center;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        /* Responsive : ajustement pour tablettes/mobiles */
+        @media (max-width: 600px) {
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>

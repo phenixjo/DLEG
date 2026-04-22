@@ -1,0 +1,69 @@
+@import url('fonts.css');
+
+:root {
+    --dleg-blue: #2A4B7C;
+    --dleg-orange: #E06D28;
+}
+
+[x-cloak] { 
+    display: none !important; 
+}
+
+.selection-blue::selection { 
+    background-color: var(--dleg-blue); 
+    color: white; 
+}
+
+/* --- ANIMATIONS GLOBALES (Modifiables par l'administrateur) --- */
+
+/* Animation d'apparition vers le haut */
+.animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation de zoom doux */
+.animate-zoom-in {
+    animation: zoomIn 1.2s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animation de flottement continu (pour les cartes ou icônes) */
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Délais d'animation pour créer un effet en cascade */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
