@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DLEG GROUP - Bâtiment, Énergie, Industrie & Environnement</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="js/tailwindcss.js"></script>
+    
+    <!-- Configuration Tailwind -->
+    <script src="js/tailwind.config.js"></script>
+
+    <!-- Styles personnalisés (Polices, Couleurs, etc.) -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
+    
+    <!-- Lucide Icons -->
+    <script src="js/lucide.js"></script>
+    
+    <!-- Configuration du site (Email, etc.) -->
+    <script src="js/config.js"></script>
+    
+    <!-- Alpine.js -->
+    <script defer src="js/alpine.js"></script>
+</head>
+<body class="bg-white font-sans antialiased text-zinc-900 selection-blue" x-data="{ 
+    scrolled: false, 
+    mobileMenuOpen: false
+}" @scroll.window="scrolled = (window.pageYOffset > 50)">
+
+    <!-- Navbar -->
+    <nav :class="scrolled ? 'bg-white/90 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-6'" class="fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2">
+                <!-- Replace src with your uploaded logo filename if different -->
+                <img src="images/accueil/logo.png" alt="DLEG Logo" class="h-12 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="hidden items-center gap-2" style="display: none;">
+                    <div class="w-10 h-10 bg-dleg-blue flex items-center justify-center rounded-sm">
+                        <span class="text-white font-bold text-xl italic">D</span>
+                    </div>
+                    <span :class="scrolled ? 'text-dleg-blue' : 'text-white'" class="font-bold text-xl tracking-tighter">DLEG GROUP</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <div class="relative group" x-data="{ open: false }">
+                    <button @mouseenter="open = true" @mouseleave="open = false" :class="scrolled ? 'text-dleg-blue' : 'text-white'" class="text-sm font-medium flex items-center gap-1 hover:text-dleg-orange transition-colors">
+                        Nos Pôles <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </button>
+                    <div x-show="open" @mouseenter="open = true" @mouseleave="open = false" x-cloak x-transition class="absolute top-full left-0 w-64 bg-white shadow-xl rounded-xl py-2 border border-zinc-100">
+                        <a href="pages/btp-infrastructures.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 font-medium">Bâtiment & Infrastructures</a>
+                        <a href="pages/energie-eau.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 font-medium">Énergie & Eau</a>
+						<a href="pages/Mines.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 font-medium">Mines</a>
+                        <a href="pages/industrie-materiaux.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 font-medium">Industrie & Matériaux</a>
+                        <a href="pages/environnement.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 font-medium">Environnement</a>
+                    </div>
+                </div>
+                <a href="#contact" :class="scrolled ? 'text-dleg-blue' : 'text-white'" class="text-sm font-medium hover:text-dleg-orange transition-colors">Contact</a>
+				<a href="galerie.html" :class="scrolled ? 'bg-dleg-blue text-white hover:bg-dleg-orange' : 'bg-white text-dleg-blue hover:bg-zinc-100'" class="px-5 py-2 rounded-full text-sm font-semibold transition-all inline-block">
+                    Galerie
+                </a>	
+			   <a href="pages/mot-du-directeur.html" :class="scrolled ? 'bg-dleg-blue text-white hover:bg-dleg-orange' : 'bg-white text-dleg-blue hover:bg-zinc-100'" class="px-5 py-2 rounded-full text-sm font-semibold transition-all inline-block">
+                    Mot du directeur
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="md:hidden" @click="mobileMenuOpen = !mobileMenuOpen">
+                <i data-lucide="menu" :class="scrolled ? 'text-dleg-blue' : 'text-white'" x-show="!mobileMenuOpen"></i>
+                <i data-lucide="x" :class="scrolled ? 'text-dleg-blue' : 'text-white'" x-show="mobileMenuOpen" x-cloak></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="mobileMenuOpen" x-cloak x-transition class="absolute top-full left-0 w-full bg-white shadow-xl py-8 px-6 flex flex-col gap-6 md:hidden">
+            <p class="text-xs font-bold uppercase tracking-widest text-dleg-orange">Nos Pôles</p>
+            <a href="pages/btp-infrastructures.html" class="text-lg font-semibold text-dleg-blue hover:text-dleg-orange transition-colors">Bâtiment & Infrastructures</a>
+            <a href="pages/energie-eau.html" class="text-lg font-semibold text-dleg-blue hover:text-dleg-orange transition-colors">Énergie & Eau</a>
+			<a href="pages/mines.html" class="text-lg font-semibold text-dleg-blue hover:text-dleg-orange transition-colors">Mines</a>
+            <a href="pages/industrie-materiaux.html" class="text-lg font-semibold text-dleg-blue hover:text-dleg-orange transition-colors">Industrie & Matériaux</a>
+            <a href="pages/environnement.html" class="text-lg font-semibold text-dleg-blue hover:text-dleg-orange transition-colors">Environnement</a>
+            <hr class="border-zinc-100">
+            <a href="#contact" @click="mobileMenuOpen = false" class="text-lg font-semibold text-dleg-blue hover:text-dleg-orange transition-colors">Contact</a>
+            <a href="pages/mot-du-directeur.html" class="w-full text-center bg-dleg-blue text-white hover:bg-dleg-orange transition-colors py-4 rounded-xl font-bold block">Mot du directeur</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center overflow-hidden bg-zinc-900 animate-pan-bg">
+        <div class="absolute inset-0 z-0">
+            <img src="images/accueil/hero.jpg" alt="Modern Architecture" class="w-full h-full object-cover object-center opacity-60 mix-blend-overlay" loading="eager" decoding="async">
+            <div class="absolute inset-0 bg-gradient-to-r from-dleg-blue via-dleg-blue/40 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+            <div class="max-w-2xl animate-fade-in-up">
+                <span class="inline-block px-4 py-1 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs font-bold tracking-widest uppercase mb-6 border border-white/20">
+                    DLEG GROUP - Excellence Multisectorielle
+                </span>
+                <h1 class="text-8xl md:text-8xl font-bold text-white leading-[0.9] tracking-tighter mb-8">
+                    BÂTISSEURS <span class="italic font-serif font-light">d'Avenir</span>.
+                </h1>
+                <p class="text-zinc-400 text-lg md:text-xl mb-10 max-w-lg">
+                    Spécialiste en BTP, Énergie, Industrie et Environnement. Nous concevons et réalisons des solutions durables pour structurer le territoire.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#domaines" class="px-8 py-4 bg-dleg-orange text-white rounded-full font-bold flex items-center gap-2 hover:bg-orange-600 transition-colors">
+                        Découvrir nos Pôles <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Domaines Section -->
+    <section id="domaines" class="py-24 bg-zinc-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 animate-fade-in-up">
+                <h2 class="text-sm font-bold uppercase tracking-[0.2em] text-dleg-orange mb-4">Nos Pôles d'Expertise</h2>
+                <h3 class="text-4xl md:text-5xl font-bold text-dleg-blue tracking-tight">
+                    Une ingénierie <span class="italic font-serif font-normal text-dleg-orange">globale</span>.
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- BTP & Infrastructures -->
+                <a href="pages/btp-infrastructures.html" class="group relative aspect-[3/4] rounded-3xl overflow-hidden shadow-xl animate-fade-in-up delay-100 domain-card-shine">
+                    <img src="images/accueil/construction-card.jpg" alt="BTP" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dleg-blue/90 via-dleg-blue/40 to-transparent"></div>
+                    <div class="absolute inset-0 p-6 flex flex-col justify-end">
+                        <div class="w-12 h-12 bg-dleg-orange/90 backdrop-blur-md rounded-xl flex items-center justify-center mb-4 border border-white/20 animate-float hover-bounce-subtle">
+                            <i data-lucide="building-2" class="text-white w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Bâtiment & Infrastructures</h4>
+                        <p class="text-zinc-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">BTP, VRD et Aménagement foncier.</p>
+                        <div class="mt-4 flex items-center gap-2 text-dleg-orange text-xs font-bold uppercase tracking-widest">
+                            Détails <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Énergie & Eau -->
+                <a href="pages/energie-eau.html" class="group relative aspect-[3/4] rounded-3xl overflow-hidden shadow-xl animate-fade-in-up delay-200 domain-card-shine">
+                    <img src="images/accueil/mines-card.jpg" alt="Énergie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dleg-blue/90 via-dleg-blue/40 to-transparent"></div>
+                    <div class="absolute inset-0 p-6 flex flex-col justify-end">
+                        <div class="w-12 h-12 bg-dleg-orange/90 backdrop-blur-md rounded-xl flex items-center justify-center mb-4 border border-white/20 animate-float delay-100 hover-bounce-subtle">
+                            <i data-lucide="zap" class="text-white w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Énergie & Eau</h4>
+                        <p class="text-zinc-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Électrification, Solaire, Eau et Assainissement.</p>
+                        <div class="mt-4 flex items-center gap-2 text-dleg-orange text-xs font-bold uppercase tracking-widest">
+                            Détails <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Industrie & Matériaux -->
+                <a href="pages/industrie-materiaux.html" class="group relative aspect-[3/4] rounded-3xl overflow-hidden shadow-xl animate-fade-in-up delay-300 domain-card-shine">
+                    <img src="images/accueil/hero.jpg" alt="Industrie" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dleg-blue/90 via-dleg-blue/40 to-transparent"></div>
+                    <div class="absolute inset-0 p-6 flex flex-col justify-end">
+                        <div class="w-12 h-12 bg-dleg-orange/90 backdrop-blur-md rounded-xl flex items-center justify-center mb-4 border border-white/20 animate-float delay-200 hover-bounce-subtle">
+                            <i data-lucide="anvil" class="text-white w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Industrie & Matériaux</h4>
+                        <p class="text-zinc-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Charpente, Chaudronnerie et Préfas.</p>
+                        <div class="mt-4 flex items-center gap-2 text-dleg-orange text-xs font-bold uppercase tracking-widest">
+                            Détails <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Environnement -->
+                <a href="pages/environnement.html" class="group relative aspect-[3/4] rounded-3xl overflow-hidden shadow-xl animate-fade-in-up delay-400 domain-card-shine">
+                    <img src="images/accueil/tourisme-card.jpg" alt="Environnement" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" decoding="async">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dleg-blue/90 via-dleg-blue/40 to-transparent"></div>
+                    <div class="absolute inset-0 p-6 flex flex-col justify-end">
+                        <div class="w-12 h-12 bg-dleg-orange/90 backdrop-blur-md rounded-xl flex items-center justify-center mb-4 border border-white/20 animate-float delay-300 hover-bounce-subtle">
+                            <i data-lucide="leaf" class="text-white w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">Environnement</h4>
+                        <p class="text-zinc-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Aménagement et entretien d'espaces verts.</p>
+                        <div class="mt-4 flex items-center gap-2 text-dleg-orange text-xs font-bold uppercase tracking-widest">
+                            Détails <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-dleg-blue text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 animate-fade-in-up">
+                <div>
+                    <h2 class="text-5xl font-bold tracking-tighter mb-8">
+                        Parlons de votre <span class="text-dleg-orange">projet.</span>
+                    </h2>
+                    <p class="text-blue-100 text-lg mb-12 max-w-md">
+                        Que ce soit pour un projet d'infrastructure, d'énergie, industriel ou environnemental, nos experts sont à votre écoute.
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-6">
+                            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-dleg-orange">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-blue-200 font-bold uppercase tracking-widest">Email</p>
+                                <p class="font-semibold">dlexcellegroup@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-dleg-orange">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-blue-200 font-bold uppercase tracking-widest">Téléphone</p>
+                                <p class="font-semibold">+225 07 07 012 135</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white/5 p-10 rounded-3xl border border-white/10 backdrop-blur-sm">
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-widest text-blue-200">Nom et Prénoms *</label>
+                                <input type="text" id="nom" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-dleg-orange text-white transition-colors" placeholder="Jorus Silué">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-widest text-blue-200">Contact (Téléphone) *</label>
+                                <input type="tel" id="telephone" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-dleg-orange text-white transition-colors" placeholder="+225 07 07 012 135">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase tracking-widest text-blue-200">Email *</label>
+                            <input type="email" id="email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-dleg-orange text-white transition-colors" placeholder="jorus@exemple.com">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase tracking-widest text-blue-200">Pôles d'Intérêt * (choisir au moins un)</label>
+                            <div class="flex flex-wrap gap-4 mt-2">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" name="domaine" value="Bâtiment & Infrastructures" class="w-4 h-4 accent-dleg-orange">
+                                    <span class="text-sm text-white">Bâtiment & Infrastructures</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" name="domaine" value="Énergie & Eau" class="w-4 h-4 accent-dleg-orange">
+                                    <span class="text-sm text-white">Énergie & Eau</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" name="domaine" value="Industrie & Matériaux" class="w-4 h-4 accent-dleg-orange">
+                                    <span class="text-sm text-white">Industrie & Matériaux</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" name="domaine" value="Environnement" class="w-4 h-4 accent-dleg-orange">
+                                    <span class="text-sm text-white">Environnement</span>
+                                </label>
+                            </div>
+                            <p id="domaineError" class="text-red-400 text-xs hidden mt-1">Veuillez sélectionner au moins un pôle.</p>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase tracking-widest text-blue-200">Message *</label>
+                            <textarea id="message" required rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-dleg-orange text-white transition-colors" placeholder="Rédigez votre message ici..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-dleg-orange text-white py-4 rounded-xl font-bold hover:bg-orange-600 transition-colors">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dleg-blue py-3 border-t border-white/10">
+        <!-- <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8"> -->
+            <!-- <div class="flex items-center gap-2"> -->
+                <!-- <img src="images/accueil/logo.png" alt="DLEG Logo" class="h-8 w-auto object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"> -->
+                <!-- <div class="hidden items-center gap-2" style="display: none;"> -->
+                    <!-- <div class="w-8 h-8 bg-dleg-orange flex items-center justify-center rounded-sm"> -->
+                        <!-- <span class="text-white font-bold text-lg italic">D</span> -->
+                    <!-- </div> -->
+                    <!-- <span class="font-bold text-lg tracking-tighter text-white">DLEG GROUP</span> -->
+                <!-- </div> -->
+            <!-- </div> -->
+            
+            <!-- Download Section -->
+            <!-- <div class="flex flex-wrap justify-center gap-4 border-l border-zinc-800 pl-8"> -->
+                <!-- <p class="text-zinc-600 text-xs font-bold uppercase tracking-widest w-full text-center md:text-left mb-2">Télécharger les pages :</p> -->
+                <!-- <a href="index.html" download="index.html" class="flex items-center gap-2 text-xs bg-zinc-900 hover:bg-zinc-800 px-3 py-2 rounded-lg transition-colors text-zinc-400 hover:text-white"> -->
+                    <!-- <i data-lucide="download" class="w-3 h-3"></i> Home.html -->
+                <!-- </a> -->
+                <!-- <a href="pages/mot-du-directeur.html" download="mot-du-directeur.html" class="flex items-center gap-2 text-xs bg-zinc-900 hover:bg-zinc-800 px-3 py-2 rounded-lg transition-colors text-zinc-400 hover:text-white"> -->
+                    <!-- <i data-lucide="download" class="w-3 h-3"></i> Mot du directeur.html -->
+                <!-- </a> -->
+                <!-- <a href="pages/btp-infrastructures.html" download="btp-infrastructures.html" class="flex items-center gap-2 text-xs bg-zinc-900 hover:bg-zinc-800 px-3 py-2 rounded-lg transition-colors text-zinc-400 hover:text-white"> -->
+                    <!-- <i data-lucide="download" class="w-3 h-3"></i> BTP.html -->
+                <!-- </a> -->
+                <!-- <a href="pages/energie-eau.html" download="energie-eau.html" class="flex items-center gap-2 text-xs bg-zinc-900 hover:bg-zinc-800 px-3 py-2 rounded-lg transition-colors text-zinc-400 hover:text-white"> -->
+                    <!-- <i data-lucide="download" class="w-3 h-3"></i> Energie.html -->
+                <!-- </a> -->
+                <!-- <a href="pages/industrie-materiaux.html" download="industrie-materiaux.html" class="flex items-center gap-2 text-xs bg-zinc-900 hover:bg-zinc-800 px-3 py-2 rounded-lg transition-colors text-zinc-400 hover:text-white"> -->
+                    <!-- <i data-lucide="download" class="w-3 h-3"></i> Industrie.html -->
+                <!-- </a> -->
+                <!-- <a href="pages/environnement.html" download="environnement.html" class="flex items-center gap-2 text-xs bg-zinc-900 hover:bg-zinc-800 px-3 py-2 rounded-lg transition-colors text-zinc-400 hover:text-white"> -->
+                    <!-- <i data-lucide="download" class="w-3 h-3"></i> Environnement.html -->
+                <!-- </a> -->
+                <!-- <button onclick="downloadProjectZip()" class="flex items-center gap-2 text-xs bg-dleg-orange hover:bg-orange-600 px-3 py-2 rounded-lg transition-colors text-white font-medium cursor-pointer"> -->
+                    <!-- <i data-lucide="folder-down" class="w-3 h-3"></i> Télécharger tout le projet (ZIP) -->
+                <!-- </button> -->
+            <!-- </div> -->
+
+            <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-zinc-200 text-sm">
+                &copy; 2026 DLEG GROUP. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        async function downloadProjectZip() {
+            try {
+                const btn = document.querySelector('button[onclick="downloadProjectZip()"]');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i data-lucide="loader-2" class="w-3 h-3 animate-spin"></i> Téléchargement...';
+                lucide.createIcons();
+                
+                const response = await fetch('/api/download-zip');
+                if (!response.ok) throw new Error('Network response was not ok');
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'projet-dleg.zip';
+                document.body.appendChild(a);
+                a.click();
+                
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+                
+                btn.innerHTML = originalText;
+                lucide.createIcons();
+            } catch (error) {
+                console.error('Download failed:', error);
+                alert('Le téléchargement a échoué. Veuillez réessayer.');
+                const btn = document.querySelector('button[onclick="downloadProjectZip()"]');
+                btn.innerHTML = '<i data-lucide="folder-down" class="w-3 h-3"></i> Télécharger tout le projet (ZIP)';
+                lucide.createIcons();
+            }
+        }
+
+        // Gestion du formulaire de contact
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const checkboxes = document.querySelectorAll('input[name="domaine"]:checked');
+            const domaineError = document.getElementById('domaineError');
+            
+            if (checkboxes.length === 0) {
+                domaineError.classList.remove('hidden');
+                return;
+            } else {
+                domaineError.classList.add('hidden');
+            }
+            
+            const domaines = Array.from(checkboxes).map(cb => cb.value).join(', ');
+            const nom = document.getElementById('nom').value;
+            const telephone = document.getElementById('telephone').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            const subject = `Nouveau message de ${nom} - DLEG GROUP`;
+            const body = `Nom et Prénoms : ${nom}\nContact : ${telephone}\nEmail : ${email}\nPôles concernés : ${domaines}\n\nMessage :\n${message}`;
+            
+            const targetEmail = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.emailContact) ? SITE_CONFIG.emailContact : 'dlexcellegrouo@gmail.com';
+            
+            window.location.href = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        });
+    </script>
+</body>
+</html>

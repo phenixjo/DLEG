@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mot du Directeur - DLEG GROUP</title>
+    <script src="../js/tailwindcss.js"></script>
+    <script src="../js/tailwind.config.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/lucide.js"></script>
+    <script defer src="../js/alpine.js"></script>
+</head>
+<body class="bg-white font-sans antialiased text-zinc-900 selection-blue" x-data="{ scrolled: false, mobileMenuOpen: false }" @scroll.window="scrolled = (window.pageYOffset > 50)">
+
+    <!-- Navigation -->
+    <nav :class="scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'" class="fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="../index.html" class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-dleg-orange rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">DL</span>
+                </div>
+                <span :class="scrolled ? 'text-dleg-blue' : 'text-white'" class="font-bold text-xl tracking-tight">DLEG GROUP</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="../index.html" :class="scrolled ? 'text-dleg-blue' : 'text-white'" class="text-sm font-medium hover:text-dleg-orange transition-colors">Accueil</a>
+                
+                <!-- Dropdown Domaines -->
+                <div class="relative group" x-data="{ open: false }">
+                    <button @mouseenter="open = true" @mouseleave="open = false" :class="scrolled ? 'text-dleg-blue' : 'text-white'" class="flex items-center gap-1 text-sm font-medium hover:text-dleg-orange transition-colors">
+                        Nos Pôles <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </button>
+                    <div x-show="open" @mouseenter="open = true" @mouseleave="open = false" x-cloak x-transition class="absolute top-full left-0 w-64 bg-white shadow-xl rounded-xl py-2 border border-zinc-100">
+                        <a href="btp-infrastructures.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 font-medium">Bâtiment & Infrastructures</a>
+                        <a href="energie-eau.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 font-medium">Énergie & Eau</a>
+						<a href="Mines.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 font-medium">Mines</a>
+                        <a href="industrie-materiaux.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 font-medium">Industrie & Matériaux</a>
+                        <a href="environnement.html" class="block px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-50 font-medium">Environnement</a>
+                    </div>
+                </div>
+                <a href="../index.html#contact" :class="scrolled ? 'text-dleg-blue' : 'text-white'" class="text-sm font-medium hover:text-dleg-orange transition-colors">Contact</a>
+                <a href="galerie.html" :class="scrolled ? 'bg-dleg-blue text-white hover:bg-dleg-orange' : 'bg-white text-dleg-blue hover:bg-zinc-100'" class="px-5 py-2 rounded-full text-sm font-semibold transition-all inline-block">
+                    Galerie
+                </a>
+				<a href="mot-du-directeur.html" :class="scrolled ? 'bg-dleg-blue text-white hover:bg-dleg-orange' : 'bg-white text-dleg-blue hover:bg-zinc-100'" class="px-5 py-2 rounded-full text-sm font-semibold transition-all inline-block">
+                    Mot du directeur
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="md:hidden" @click="mobileMenuOpen = !mobileMenuOpen">
+                <i data-lucide="menu" :class="scrolled ? 'text-dleg-blue' : 'text-white'" x-show="!mobileMenuOpen"></i>
+                <i data-lucide="x" :class="scrolled ? 'text-dleg-blue' : 'text-white'" x-show="mobileMenuOpen" x-cloak></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="mobileMenuOpen" x-cloak x-transition class="absolute top-full left-0 w-full bg-white shadow-xl py-8 px-6 flex flex-col gap-6 md:hidden">
+            <p class="text-xs font-bold uppercase tracking-widest text-dleg-orange">Nos Pôles</p>
+            <a href="btp-infrastructures.html" class="text-lg font-semibold text-dleg-blue hover:text-dleg-orange transition-colors">Bâtiment & Infrastructures</a>
+            <a href="energie-eau.html" class="text-lg font-semibold text-dleg-blue hover:text-dleg-orange transition-colors">Énergie & Eau</a>
+			<a href="mines.html" class="text-lg font-semibold text-dleg-blue hover:text-dleg-orange transition-colors">Mines</a>
+            <a href="industrie-materiaux.html" class="text-lg font-semibold text-dleg-blue hover:text-dleg-orange transition-colors">Industrie & Matériaux</a>
+            <a href="environnement.html" class="text-lg font-semibold text-dleg-blue hover:text-dleg-orange transition-colors">Environnement</a>
+            <hr class="border-zinc-100">
+            <a href="../index.html#contact" @click="mobileMenuOpen = false" class="text-lg font-semibold text-dleg-blue hover:text-dleg-orange transition-colors">Contact</a>
+            <a href="mot-du-directeur.html" class="w-full text-center bg-dleg-blue text-white hover:bg-dleg-orange transition-colors py-4 rounded-xl font-bold block">Mot du directeur</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-40 pb-20 overflow-hidden">
+        <!-- Image de fond modifiable -->
+        <img src="../images/fond.jpg" alt="Gouvernance Header" class="absolute inset-0 w-full h-full object-cover object-center z-0" loading="lazy" decoding="async" referrerPolicy="no-referrer">
+        <!-- Overlay sombre pour la lisibilité du texte -->
+        <div class="absolute inset-0 bg-zinc-900/80 z-0"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10 animate-fade-in-up">
+            <span class="text-xs font-bold uppercase tracking-widest text-dleg-orange mb-4 block">Gouvernance</span>
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-white">Mot du <!--<br>--><span class="italic font-serif font-light text-dleg-orange">Directeur</span></h1>
+        </div>
+    </header>
+
+    <!-- Content Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                
+                <!-- Photo du Directeur -->
+                <div class="lg:col-span-5 animate-fade-in-up delay-100">
+                    <div class="rounded-3xl overflow-hidden shadow-2xl aspect-[3/4] relative group">
+                        <!-- L'administrateur peut remplacer cette image en modifiant le src ou en remplaçant le fichier dans le dossier images -->
+                        <img src="../images/directeur.jpg" alt="Photo du Directeur" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" onerror="this.src='https://picsum.photos/seed/director/800/1000'">
+                        
+                        <!-- Overlay d'information -->
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dleg-blue to-transparent p-8 pt-24">
+                            <h3 class="text-2xl font-bold text-white mb-1">Nom du Directeur</h3>
+                            <p class="text-dleg-orange font-medium">Directeur Général, DLEG GROUP</p>
+                        </div>
+                    </div>
+                    <!-- <p class="text-sm text-zinc-400 mt-4 text-center italic"> -->
+                        <!-- * L'administrateur peut modifier cette photo en remplaçant le fichier "directeur.jpg" dans le dossier "images". -->
+                    <!-- </p> -->
+                </div>
+                
+                <!-- Texte du Mot du Directeur -->
+                <div class="lg:col-span-7 animate-fade-in-up delay-200">
+                    <h2 class="text-3xl font-bold text-dleg-blue mb-8">Bâtir l'avenir, ensemble.</h2>
+                    
+                    <div class="prose prose-lg prose-zinc max-w-none">
+                        <p class="text-zinc-600 leading-relaxed mb-6">
+                            Bienvenue chez <strong>DLEG GROUP</strong>. Depuis notre création, notre ambition a toujours été de repousser les limites de l'excellence dans chacun de nos domaines d'intervention. Nous croyons fermement que le développement de notre continent passe par des infrastructures solides, une exploitation responsable de nos ressources et la mise en valeur de notre patrimoine.
+                        </p>
+                        
+                        <p class="text-zinc-600 leading-relaxed mb-8">
+                            Notre groupe s'articule autour de quatre pôles majeurs, chacun expert dans son secteur et portant notre vision d'un avenir durable :
+                        </p>
+                        
+                        <div class="space-y-6 mb-10">
+                            <!-- Pôle 1 -->
+                            <div class="flex items-start gap-4 p-6 rounded-2xl bg-zinc-50 border border-zinc-100 hover:border-dleg-orange/30 transition-colors">
+                                <div class="w-12 h-12 rounded-full bg-dleg-blue/10 flex items-center justify-center shrink-0">
+                                    <i data-lucide="building-2" class="w-6 h-6 text-dleg-blue"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-dleg-blue mb-2">Bâtiment & Infrastructures</h4>
+                                    <p class="text-zinc-600 text-sm leading-relaxed">
+                                        Dédié aux infrastructures, au génie civil et à l'aménagement foncier, ce pôle bâtit les fondations de demain. De la conception à la réalisation, nous livrons des projets d'envergure répondant aux normes internationales.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Pôle 2 -->
+                            <div class="flex items-start gap-4 p-6 rounded-2xl bg-zinc-50 border border-zinc-100 hover:border-dleg-orange/30 transition-colors">
+                                <div class="w-12 h-12 rounded-full bg-dleg-orange/10 flex items-center justify-center shrink-0">
+                                    <i data-lucide="zap" class="w-6 h-6 text-dleg-orange"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-dleg-blue mb-2">Énergie & Eau</h4>
+                                    <p class="text-zinc-600 text-sm leading-relaxed">
+                                        Engagé dans l'électrification, l'énergie solaire, l'adduction en eau potable et l'assainissement. Nous garantissons l'accès aux services essentiels tout en favorisant la transition énergétique.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Pôle 3 -->
+                            <div class="flex items-start gap-4 p-6 rounded-2xl bg-zinc-50 border border-zinc-100 hover:border-dleg-orange/30 transition-colors">
+                                <div class="w-12 h-12 rounded-full bg-dleg-blue/10 flex items-center justify-center shrink-0">
+                                    <i data-lucide="anvil" class="w-6 h-6 text-dleg-blue"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-dleg-blue mb-2">Industrie & Matériaux</h4>
+                                    <p class="text-zinc-600 text-sm leading-relaxed">
+                                        Expert en charpente métallique, chaudronnerie et production de préfas (agglos, poteaux électriques, bordures). Nous fournissons les matériaux de haute qualité nécessaires aux grands projets.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Pôle 4 -->
+                            <div class="flex items-start gap-4 p-6 rounded-2xl bg-zinc-50 border border-zinc-100 hover:border-dleg-orange/30 transition-colors">
+                                <div class="w-12 h-12 rounded-full bg-dleg-orange/10 flex items-center justify-center shrink-0">
+                                    <i data-lucide="leaf" class="w-6 h-6 text-dleg-orange"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-dleg-blue mb-2">Environnement</h4>
+                                    <p class="text-zinc-600 text-sm leading-relaxed">
+                                        Spécialisé dans l'aménagement et l'entretien d'espaces verts. Nous intégrons la nature au cœur de nos projets urbains et industriels pour créer des espaces de vie sains et durables.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-zinc-600 leading-relaxed mb-6">
+                            La synergie entre ces pôles fait la force de <strong> DLEG GROUP </strong>. Nous sommes fiers de nos équipes dévouées, de nos partenaires stratégiques et de la confiance que vous, nos clients, nous accordez au quotidien.
+                        </p>
+                        
+                        <p class="text-zinc-600 leading-relaxed mb-8">
+                            Ensemble, continuons à innover et à construire un héritage durable pour les générations futures.
+                        </p>
+                        
+                        <!-- Signature -->
+                        <div class="mt-12 pt-8 border-t border-zinc-100">
+                            <p class="font-serif italic text-2xl text-dleg-blue mb-2">Le Directeur Général</p>
+                            <p class="text-sm font-bold text-zinc-400 uppercase tracking-wider">DLEG GROUP</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dleg-blue text-white py-3 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-2 mb-4">
+                    <div class="w-8 h-8 bg-dleg-orange rounded flex items-center justify-center">
+                        <span class="text-white font-bold">DL</span>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight">DLEG GROUP</span>
+                </div>
+                <p class="text-zinc-400 text-sm max-w-sm">
+                    Excellence multisectorielle en BTP, Énergie, Industrie et Environnement.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Liens Rapides</h4>
+                <ul class="space-y-2 text-sm text-zinc-400">
+                    <li><a href="../index.html" class="hover:text-dleg-orange transition-colors">Accueil</a></li>
+                    <li><a href="btp-infrastructures.html" class="hover:text-dleg-orange transition-colors">Bâtiment & Infrastructures</a></li>
+                    <li><a href="energie-eau.html" class="hover:text-dleg-orange transition-colors">Énergie & Eau</a></li>
+					<li><a href="energie-eau.html" class="hover:text-dleg-orange transition-colors">Mines</a></li>
+                    <li><a href="industrie-materiaux.html" class="hover:text-dleg-orange transition-colors">Industrie & Matériaux</a></li>
+                    <li><a href="environnement.html" class="hover:text-dleg-orange transition-colors">Environnement</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Contact</h4>
+                <ul class="space-y-2 text-sm text-zinc-400">
+                    <li>Abidjan, Côte d'Ivoire</li>
+                    <li>dlexcellegroup@gmail.com</li>
+                    <li>+225 07 07 012 135</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-zinc-500 text-sm">
+            <div>
+                &copy; 2026 DLEG GROUP. Tous droits réservés.
+            </div>
+            <!-- <div class="flex flex-wrap justify-center gap-4"> -->
+                <!-- <button onclick="downloadProjectZip()" class="flex items-center gap-2 text-xs bg-dleg-orange hover:bg-orange-600 px-3 py-2 rounded-lg transition-colors text-white font-medium cursor-pointer"> -->
+                    <!-- <i data-lucide="folder-down" class="w-3 h-3"></i> Télécharger tout le projet (ZIP) -->
+                <!-- </button> -->
+            <!-- </div> -->
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        async function downloadProjectZip() {
+            try {
+                const btn = document.querySelector('button[onclick="downloadProjectZip()"]');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i data-lucide="loader-2" class="w-3 h-3 animate-spin"></i> Téléchargement...';
+                lucide.createIcons();
+                
+                const response = await fetch('/api/download-zip');
+                if (!response.ok) throw new Error('Network response was not ok');
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'projet-dleg.zip';
+                document.body.appendChild(a);
+                a.click();
+                
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+                
+                btn.innerHTML = originalText;
+                lucide.createIcons();
+            } catch (error) {
+                console.error('Download failed:', error);
+                alert('Le téléchargement a échoué. Veuillez réessayer.');
+                const btn = document.querySelector('button[onclick="downloadProjectZip()"]');
+                btn.innerHTML = '<i data-lucide="folder-down" class="w-3 h-3"></i> Télécharger tout le projet (ZIP)';
+                lucide.createIcons();
+            }
+        }
+    </script>
+</body>
+</html>
